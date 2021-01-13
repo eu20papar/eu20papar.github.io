@@ -1,0 +1,50 @@
+canvas {
+    padding: 0;
+    margin: auto;
+    display: block;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+
+@font-face {
+	font-family: 'editundo';
+	src: url('/font/editundo.woff');
+}
+
+@font-face{
+    font-family: 'Mecha';
+    src: url('/font/mecha.ttf');
+}
+
+p{
+    position: relative;
+    font-family: editundo;
+}
+
+#title{
+    font-size: 100px;
+}
+
+#score,#hscore{
+    font-size: 50px;
+}
+
+/*body{
+    background-image: url("/images/nokia3310.png");
+    background-repeat: no-repeat;
+    background-size: 1200px;
+    background-attachment: fixed;
+    background-position: center top; 
+}*/
+
+#teclas{
+    position: absolute;
+    float: right;
+}
+
+body{
+    background-color:darkgrey;
+}

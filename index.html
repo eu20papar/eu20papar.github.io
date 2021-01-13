@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title></title>
+        <meta charset="UTF-8">
+        <link rel="shortcut icon" href="images/snek0.ico">
+        <link href="./style/menu.css" rel="stylesheet">
+    </head>
+    <body>
+        <script>
+            function modoJOGO(tipo, x){
+                var menu1 = document.getElementById('menu1');
+                var menu2 = document.getElementById('menu2');
+                if(tipo === 'player'){
+                    nP = x;
+                    menu1.style="visibility: hidden;";
+                    menu2.style="visibility: visible;";
+
+                }else if(tipo === 'mapa'){
+                    mJ = x;
+                    script = 'snek'+ nP + mJ + '.html';
+                    window.open(script);
+                    location.reload();
+                }
+            }
+        </script>
+        <div id ="img">
+            <img src="images/Snek.png">
+
+        </div>
+        <div id="menu1">
+            <p>Numero de Jogadores</p>
+            <button onclick="modoJOGO('player', 1)">1 Jogador</button>
+            <!--<button onclick="modoJOGO('player', 2)">2 Jogadores</button>-->
+        </div>
+        <div id="menu2" style="visibility: hidden;">    
+            <p>Seleção de mapa:</p>
+            <button onclick="modoJOGO('mapa', 1)">Sem Bordas</button>
+            <button onclick="modoJOGO('mapa', 2)">Com Bordas</button>
+            <button onclick="modoJOGO('mapa', 3)">Com 4 divisões</button>
+        </div>
+    </body>
+</html>
