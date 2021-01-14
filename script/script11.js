@@ -174,6 +174,7 @@ function fim(){
         x=prompt("Queres jogar outra vez?(S/N)");
         if(x == 'S' || x == 's' || x == 'Sim' || x == 'SIM' || x == 'sim'){
             timer = setInterval(jogo,150);
+            tecla = '';
             dir = '';
             flag = true;
             xv=0;
