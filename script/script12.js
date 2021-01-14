@@ -56,11 +56,15 @@ function jogo(){
         }
     }
 
+    if(px==-1||px==nQ||py==-1||py==nQ){
+        fim();
+    }
+
     //cobra
     boardContext.fillStyle = 'lime';
     for(var i=0;i<cauda.length;i++){
         boardContext.fillRect(cauda[i].x*cQ+1,cauda[i].y*cQ+1,cQ-1,cQ-1);
-        if(cauda[i].x == px && cauda[i].y == py && ccauda > ccauda1 + 1 ||px==-1||px==nQ||py==-1||py==nQ){
+        if(cauda[i].x == px && cauda[i].y == py && ccauda > ccauda1 + 1){
             fim();
         }
     }
