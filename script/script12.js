@@ -179,6 +179,7 @@ function fim(){
             pontos = 0;
             document.getElementById('hscore').innerHTML='High Score: ' + HS; 
             document.getElementById('score').innerHTML='Score: ' + pontos;
+            return;
         }else{
             return;
         }

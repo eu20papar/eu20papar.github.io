@@ -43,6 +43,7 @@ var ccauda1 = 1;
 
 //pontos do jogador
 var pontos = 0;
+var HS = 0;
             
 var tecla;
 var dir = '';
@@ -205,6 +206,7 @@ function fim(){
             yv=0;
             px = Math.floor(Math.random()*nQ);
             py = Math.floor(Math.random()*nQ);
+            console.log('cheguei');
             do{
                 var ax = Math.floor(Math.random()*nQ);
                 var ay = Math.floor(Math.random()*nQ);
@@ -216,6 +218,7 @@ function fim(){
             if(pontos > HS){
                 HS = pontos;
             }
+            
             pontos = 0;
             document.getElementById('hscore').innerHTML='High Score: ' + HS; 
             document.getElementById('score').innerHTML='Score: ' + pontos;
