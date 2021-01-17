@@ -11,14 +11,18 @@
             function modoJOGO(tipo, x){
                 var menu1 = document.getElementById('menu1');
                 var menu2 = document.getElementById('menu2');
+                var menu3 = document.getElementById('menu3');
                 if(tipo === 'player'){
                     nP = x;
                     menu1.style="visibility: hidden;";
                     menu2.style="visibility: visible;";
-
+                }else if(tipo === 'controles'){
+                    C = x;
+                    menu2.style="visibility: hidden;";
+                    menu3.style="visibility: visible;";
                 }else if(tipo === 'mapa'){
                     mJ = x;
-                    script = 'snek'+ nP + mJ + '.html';
+                    script = 'snek'+ nP + mJ + C +'.html';
                     window.open(script);
                     location.reload();
                 }
@@ -33,7 +37,12 @@
             <button onclick="modoJOGO('player', 1)">1 Jogador</button>
             <!--<button onclick="modoJOGO('player', 2)">2 Jogadores</button>-->
         </div>
-        <div id="menu2" style="visibility: hidden;">    
+        <div id="menu2" style="visibility: hidden;">
+            <p>Controles</p>
+            <button onclick="modoJOGO('controles','N')">Normais</button>
+            <button onclick="modoJOGO('controles','I')">Invertidos</button>
+        </div>
+        <div id="menu3" style="visibility: hidden;">    
             <p>Seleção de mapa:</p>
             <button onclick="modoJOGO('mapa', 1)">Sem Bordas</button>
             <button onclick="modoJOGO('mapa', 2)">Com Bordas</button>

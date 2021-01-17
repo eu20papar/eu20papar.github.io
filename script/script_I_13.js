@@ -17,14 +17,22 @@ var xv = 0;
 var yv = 0;
             
 //posição da cabeça da snake (x,y)
-var px = Math.floor(Math.random()*nQ);
-var py = Math.floor(Math.random()*nQ);
-            
+do{
+    var px = Math.floor(Math.random()*nQ);
+    var py = Math.floor(Math.random()*nQ);
+    if(((px == (nQ/2)-1) || (px == (nQ/2))) || ((py == (nQ/2)-1) || (py == (nQ/2))) ){
+        console.log('cabeça');
+    }
+}while(((px == (nQ/2)-1) || (px == (nQ/2))) || ((py == (nQ/2)-1) || (py == (nQ/2))) );
+    
 //localização aleatoria da comida em funcao do numero de quadrados que existem
 do{
     var ax = Math.floor(Math.random()*nQ);
     var ay = Math.floor(Math.random()*nQ);
-}while(px == ax && py == ay);
+    if((px == ax && py == ay) || ((ax == nQ/2-1 || ax == nQ/2) || (ay == nQ/2-1 || ay == nQ/2))){
+        console.log('fruta no inicio do jogo');
+    }
+}while((px == ax && py == ay) || ((ax == nQ/2-1 || ax == nQ/2) || (ay == nQ/2-1 || ay == nQ/2)));
 
 //array que guarda as posições da cauda
 var cauda = [];
@@ -57,14 +65,25 @@ function jogo(){
     if(py>nQ-1) {
         py= 0;
     }
+
+    boardContext.clearRect(0,0,board.width,board.height);
     //board
     boardContext.fillStyle = 'black';
     boardContext.fillRect(0,0,board.width,board.height);
 
+    //linhas divisórias
     for(var i=0;i<nQ;i++){
         for(var j=0;j<nQ;j++){
             boardContext.fillStyle = '#424949';
             boardContext.fillRect(i*cQ+1,j*cQ+1,cQ-1,cQ-1);
+            if(i == (nQ/2)-1 || i == (nQ/2)){
+                boardContext.fillStyle = 'black';
+                boardContext.fillRect(i*cQ,j*cQ,cQ,cQ);
+            }
+            if(j == (nQ/2)-1 || j == (nQ/2)){
+                boardContext.fillStyle = 'black';
+                boardContext.fillRect(i*cQ,j*cQ,cQ,cQ);
+            }
         }
     }
 
@@ -85,7 +104,10 @@ function jogo(){
     if(ax == px && ay == py || tecla == 16){
         ccauda++;
         pontos++;
-        while(k != 0){
+        while(k != 0 || ((ax == nQ/2-1 || ax == nQ/2) || (ay == nQ/2-1 || ay == nQ/2))){
+            if(((ax == nQ/2-1 || ax == nQ/2) || (ay == nQ/2-1 || ay == nQ/2))){
+                console.log('fruta em gerar nova');
+            }
             ax=Math.floor(Math.random()*nQ);
             ay=Math.floor(Math.random()*nQ);
             var k = 0;
@@ -102,6 +124,10 @@ function jogo(){
     //comida
     boardContext.fillStyle = 'red';
     boardContext.fillRect(ax*cQ+1,ay*cQ+1,cQ-1,cQ-1);
+
+    if(px>=(nQ/2)-1 && px<=(nQ/2) || py>=(nQ/2)-1 && py<=(nQ/2)){
+        fim();
+    }
 
     flag = true;
 
@@ -122,7 +148,7 @@ function mover(event){
             //esquerda
             case 37: 
                 if(dir != 'dir'){
-                    xv=-1;
+                    xv=1;
                     yv=0;
                     dir = 'esq';
                     return;
@@ -134,7 +160,7 @@ function mover(event){
             case 38: 
                 if(dir != 'baixo'){
                     xv=0;
-                    yv=-1;
+                    yv=1;
                     dir = 'cima';
                     return;
                 }else{
@@ -144,7 +170,7 @@ function mover(event){
             //direita
             case 39: 
                 if(dir != 'esq'){
-                    xv=1;
+                    xv=-1;
                     yv=0;
                     dir = 'dir';
                     return;
@@ -156,7 +182,7 @@ function mover(event){
             case 40: 
                 if(dir != 'cima'){
                     xv=0;
-                    yv=1;
+                    yv=-1;
                     dir = 'baixo';
                     return;
                 }else{
@@ -181,17 +207,22 @@ function fim(){
             yv=0;
             px = Math.floor(Math.random()*nQ);
             py = Math.floor(Math.random()*nQ);
+            console.log('cheguei');
             do{
                 var ax = Math.floor(Math.random()*nQ);
                 var ay = Math.floor(Math.random()*nQ);
-            }while(px == ax && py == ay);
+                if((px == ax && py == ay) || ((ax == nQ/2-1 || ax == nQ/2) || (ay == nQ/2-1 || ay == nQ/2))){
+                    console.log('fruta depois de perder');
+                }
+            }while(px == ax && py == ay || ((ax == nQ/2-1 || ax == nQ/2) || (ay == nQ/2-1 || ay == nQ/2)));
             ccauda = 1;
             if(pontos > HS){
                 HS = pontos;
             }
+            
             pontos = 0;
             document.getElementById('hscore').innerHTML='High Score: ' + HS; 
-            document.getElementById('score').innerHTML='Score: 0';
+            document.getElementById('score').innerHTML='Score: ' + pontos;
         }else{
             return;
         }
